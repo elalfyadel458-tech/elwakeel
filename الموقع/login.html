@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="تسجيل الدخول إلى حسابك في شركة الوكيل لمعدات المخابز">
+    <title>تسجيل الدخول | شركة الوكيل</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- إعدادات إرسال الإيميل - شركة الوكيل -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("-5YigWPz3hulCfM-5"); 
+        })();
+    </script>
+    <style>
+        .auth-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #000 100%);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            font-family: var(--font-family);
+        }
+
+        .auth-bg-shapes .shape {
+            position: absolute;
+            background: var(--primary-color);
+            filter: blur(80px);
+            opacity: 0.2;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .shape-1 { width: 300px; height: 300px; top: -100px; left: -100px; }
+        .shape-2 { width: 400px; height: 400px; bottom: -150px; right: -150px; }
+
+        .auth-container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 450px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            animation: zoom-in 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .auth-logo {
+            width: 100px;
+            margin-bottom: 20px;
+            background: #fff;
+            padding: 10px;
+            border-radius: 50%;
+        }
+
+        .auth-tabs {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+
+        .auth-tab {
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.2rem;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .auth-tab.active {
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .auth-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -11px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-color);
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            color: #fff;
+            font-size: 1rem;
+            transition: var(--transition);
+            font-family: var(--font-family);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .auth-btn {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .back-home {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .back-home:hover {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body class="dark-mode"> <!-- Forces dark mode aesthetics for the auth page -->
+    <div class="auth-page">
+        <div class="auth-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+        </div>
+
+        <div class="auth-container">
+            <div class="auth-header">
+                <a href="index.html">
+                    <img src="logo.png" alt="الوكيل" class="auth-logo">
+                </a>
+                <h2 style="color: #fff;">مرحباً بك في الوكيل</h2>
+            </div>
+
+            <div class="auth-tabs">
+                <div class="auth-tab active" onclick="switchAuth('login')">تسجيل الدخول</div>
+                <div class="auth-tab" onclick="switchAuth('signup')">إنشاء حساب</div>
+            </div>
+
+            <!-- Login Form -->
+            <form id="login-form" class="auth-form active" onsubmit="handleAuth(event, 'login')">
+                <div class="form-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" id="login-email" class="form-input" placeholder="example@mail.com" required>
+                </div>
+                <div class="form-group">
+                    <label>كلمة المرور</label>
+                    <input type="password" class="form-input" placeholder="********" required>
+                </div>
+                <button type="submit" class="btn btn-primary auth-btn">دخول</button>
+            </form>
+
+            <!-- Signup Form -->
+            <form id="signup-form" class="auth-form" onsubmit="handleAuth(event, 'signup')">
+                <div class="form-group">
+                    <label>اسم المستخدم (Username)</label>
+                    <input type="text" id="signup-username" class="form-input" placeholder="مثلاً: fawaz_2024" required>
+                </div>
+                <div class="form-group">
+                    <label>الاسم الكامل</label>
+                    <input type="text" id="signup-name" class="form-input" placeholder="أدخل اسمك الكريم" required>
+                </div>
+                <div class="form-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" id="signup-email" class="form-input" placeholder="example@mail.com" required>
+                </div>
+                <div class="form-group">
+                    <label>كلمة المرور</label>
+                    <input type="password" id="signup-pass" class="form-input" placeholder="********" required>
+                </div>
+                <button type="submit" class="btn btn-primary auth-btn">إنشاء الحساب</button>
+            </form>
+
+            <!-- OTP Verification Form -->
+            <form id="otp-form" class="auth-form" onsubmit="handleAuth(event, 'verify')">
+                <div class="auth-header">
+                    <p style="color: var(--primary-color);">تم إرسال رمز التأكيد إلى بريدك الإلكتروني</p>
+                </div>
+                <div class="form-group">
+                    <label>أدخل رمز التأكيد (4 أرقام)</label>
+                    <input type="text" id="otp-input" class="form-input" placeholder="0000" maxlength="4" required>
+                </div>
+                <button type="submit" class="btn btn-primary auth-btn">تأكيد الحساب</button>
+                <p class="text-center" style="margin-top: 15px; font-size: 0.8rem; color: var(--text-muted);">الرمز التجريبي هو الذي ظهر لك في الرسالة المنبثقة</p>
+            </form>
+
+            <a href="index.html" class="back-home">
+                <i class="fa-solid fa-arrow-right"></i> العودة للرئيسية
+            </a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        let pendingUser = null;
+        let generatedOTP = null;
+
+        function handleAuth(event, type) {
+            event.preventDefault();
+            const users = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+            
+            if (type === 'signup') {
+                const username = document.getElementById('signup-username').value;
+                const email = document.getElementById('signup-email').value;
+                const name = document.getElementById('signup-name').value;
+                const password = document.getElementById('signup-pass').value;
+
+                // Unique checks
+                if (users.find(u => u.username === username)) {
+                    alert('اسم المستخدم هذا موجود مسبقاً، يرجى اختيار اسم آخر.');
+                    return;
+                }
+                if (users.find(u => u.email === email)) {
+                    alert('هذا البريد مسجل بالفعل!');
+                    return;
+                }
+
+                // Simulate/Send OTP
+                generatedOTP = Math.floor(1000 + Math.random() * 9000).toString();
+                pendingUser = { username, email, name, password };
+                
+                // إرسال الإيميل الحقيقي عبر EmailJS
+                const templateParams = {
+                    from_name: "شركة الوكيل",
+                    user_name: name,
+                    user_email: email,
+                    otp_code: generatedOTP,
+                    message: "رمز التأكيد الخاص بك هو: " + generatedOTP
+                };
+
+                console.log("جاري إرسال الرمز إلى:", email, templateParams);
+                
+                emailjs.send('service_9vqp8km', 'template_6me23t9', templateParams)
+                    .then(function(response) {
+                       console.log('تم الإرسال بنجاح!', response.status, response.text);
+                       alert(`أهلاً بك يا ${name}.\nتم إرسال رمز التأكيد بنجاح إلى: ${email}`);
+                    }, function(error) {
+                       console.log('فشل الإرسال...', error);
+                       alert('خطأ في الإرسال: ' + JSON.stringify(error));
+                    });
+                
+                // Show OTP form
+                document.getElementById('signup-form').classList.remove('active');
+                document.getElementById('otp-form').classList.add('active');
+                document.querySelector('.auth-tabs').style.display = 'none';
+
+            } else if (type === 'verify') {
+                const enteredOTP = document.getElementById('otp-input').value;
+                if (enteredOTP === generatedOTP) {
+                    users.push(pendingUser);
+                    localStorage.setItem('registeredUsers', JSON.stringify(users));
+                    localStorage.setItem('userEmail', pendingUser.email);
+                    localStorage.setItem('userName', pendingUser.name);
+                    
+                    alert('تم تأكيد الحساب وتسجيل الدخول بنجاح!');
+                    window.location.href = 'welcome.html';
+                } else {
+                    alert('رمز التأكيد غير صحيح! حاول مرة أخرى.');
+                }
+
+            } else {
+                const email = document.getElementById('login-email').value;
+                const password = event.target.querySelector('input[type="password"]').value;
+
+                const user = users.find(u => u.email === email && u.password === password);
+                if (user) {
+                    localStorage.setItem('userEmail', email);
+                    localStorage.setItem('userName', user.name || 'مستخدم');
+                    window.location.href = 'welcome.html';
+                } else {
+                    alert('البريد الإلكتروني أو كلمة المرور غير صحيحة!');
+                }
+            }
+        }
+
+        function switchAuth(type) {
+            const loginForm = document.getElementById('login-form');
+            const signupForm = document.getElementById('signup-form');
+            const otpForm = document.getElementById('otp-form');
+            const tabs = document.querySelectorAll('.auth-tab');
+            const tabsContainer = document.querySelector('.auth-tabs');
+
+            tabsContainer.style.display = 'flex';
+            otpForm.classList.remove('active');
+
+            if (type === 'login') {
+                loginForm.classList.add('active');
+                signupForm.classList.remove('active');
+                tabs[0].classList.add('active');
+                tabs[1].classList.remove('active');
+            } else {
+                loginForm.classList.remove('active');
+                signupForm.classList.add('active');
+                tabs[0].classList.remove('active');
+                tabs[1].classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
