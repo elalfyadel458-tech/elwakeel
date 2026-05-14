@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="استفد من أقوى العروض والخصومات على معدات المخابز والحلويات الإيطالية">
+    <title>العروض الخاصة | شركة الوكيل لمعدات المخابز</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page-loader"><div class="loader-spinner"></div></div>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>سلة الاستفسارات</h3>
+            <i class="fa-solid fa-xmark close-cart" onclick="toggleCart()"></i>
+        </div>
+        <div class="cart-items"></div>
+        <div class="cart-footer">
+            <button class="btn btn-whatsapp btn-block" onclick="window.open('https://wa.me/966545791974', '_blank')">
+                <i class="fa-brands fa-whatsapp"></i> اطلب المنتجات في السلة
+            </button>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <i class="fa-solid fa-xmark close-lightbox" onclick="closeLightbox()"></i>
+        <div class="lightbox-content">
+            <img src="" class="lightbox-img">
+            <div class="lightbox-details">
+                <h3 class="lightbox-title"></h3>
+                <div class="lightbox-actions"></div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <nav class="navbar container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="الوكيل" class="logo-img">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="about.html">من نحن</a></li>
+                <li><a href="equipment.html">المعدات</a></li>
+                <li><a href="offers.html" class="active">العروض</a></li>
+                <li><a href="contact.html">تواصل معنا</a></li>
+            </ul>
+            <div class="header-actions">
+                <div class="cart-icon" onclick="toggleCart()">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-badge">0</span>
+                </div>
+                <button id="theme-toggle" class="control-btn"><i class="fa-solid fa-moon"></i></button>
+                <div class="mobile-toggle"><i class="fa-solid fa-bars"></i></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero section" style="min-height: 40vh; padding-top: 150px; background-image: url('https://images.unsplash.com/photo-1555507036-ab1f4038808a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
+            <div class="hero-overlay" style="background: linear-gradient(135deg, rgba(231, 76, 60, 0.8) 0%, rgba(0, 0, 0, 0.7) 100%);"></div>
+            <div class="container text-center zoom-in" style="position: relative; z-index: 1;">
+                <h1 style="color: #fff; font-size: 3.5rem;">عروض حصرية</h1>
+                <p style="color: #fff; font-size: 1.5rem;">وفر أكثر مع أقوى خصومات الموسم</p>
+                <div class="discount-badge" style="position: static; display: inline-block; margin-top: 20px; font-size: 1.5rem;">خصم ثابت 15%</div>
+            </div>
+        </section>
+
+        <section class="offers section">
+            <div class="container">
+                <div class="section-title text-center fade-in">
+                    <h2>عروضنا الحالية</h2>
+                    <p>هذه العروض سارية لفترة محدودة</p>
+                </div>
+                
+                <div class="offers-grid" id="offers-container">
+                    <!-- Offers injected here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <div class="footer-logo"><img src="logo.png" class="footer-logo-img"></div>
+            <p class="copyright">&copy; <span id="currentYear"></span> شركة الوكيل. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

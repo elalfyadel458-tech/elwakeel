@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مرحباً بك | شركة الوكيل</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .welcome-transition {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at center, var(--bg-light) 0%, #000 100%);
+            text-align: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .welcome-logo-large {
+            width: 180px;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 0 20px rgba(231, 76, 60, 0.3));
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        .welcome-title {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            animation: slide-up 0.8s ease-out;
+        }
+
+        .welcome-desc {
+            max-width: 600px;
+            font-size: 1.2rem;
+            color: var(--text-main);
+            margin-bottom: 40px;
+            line-height: 1.8;
+            animation: slide-up 1s ease-out;
+        }
+
+        .world-btn {
+            padding: 15px 40px;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.4);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: zoom-in 1.2s ease-out;
+            text-decoration: none;
+        }
+
+        .world-btn:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 15px 40px rgba(231, 76, 60, 0.6);
+        }
+
+        .world-btn i {
+            font-size: 1.5rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <div class="welcome-transition">
+        <img src="logo.png" alt="الوكيل" class="welcome-logo-large">
+        
+        <h1 class="welcome-title">شركة الوكيل للمعدات</h1>
+        <p class="welcome-desc">
+            خبراء في عالم المخابز والحلويات منذ أكثر من 15 عاماً. 
+            نحن هنا لنأخذ مشروعك إلى آفاق جديدة من الجودة والاحترافية.
+        </p>
+
+        <a href="index.html" class="world-btn">
+            انتقل إلى عالمنا
+            <i class="fa-solid fa-earth-africa"></i>
+        </a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="تواصل مع شركة الوكيل لمعدات المخابز">
+    <title>تواصل معنا | شركة الوكيل لمعدات المخابز</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page-loader"><div class="loader-spinner"></div></div>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>سلة الاستفسارات</h3>
+            <i class="fa-solid fa-xmark close-cart" onclick="toggleCart()"></i>
+        </div>
+        <div class="cart-items"></div>
+        <div class="cart-footer">
+            <button class="btn btn-whatsapp btn-block" onclick="window.open('https://wa.me/966545791974', '_blank')">
+                <i class="fa-brands fa-whatsapp"></i> اطلب المنتجات في السلة
+            </button>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <i class="fa-solid fa-xmark close-lightbox" onclick="closeLightbox()"></i>
+        <div class="lightbox-content">
+            <img src="" class="lightbox-img">
+            <div class="lightbox-details">
+                <h3 class="lightbox-title"></h3>
+                <div class="lightbox-actions"></div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <nav class="navbar container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="الوكيل" class="logo-img">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="about.html">من نحن</a></li>
+                <li><a href="equipment.html">المعدات</a></li>
+                <li><a href="offers.html">العروض</a></li>
+                <li><a href="contact.html" class="active">تواصل معنا</a></li>
+            </ul>
+            <div class="header-actions">
+                <div class="cart-icon" onclick="toggleCart()">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-badge">0</span>
+                </div>
+                <button id="theme-toggle" class="control-btn"><i class="fa-solid fa-moon"></i></button>
+                <div class="mobile-toggle"><i class="fa-solid fa-bars"></i></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero section" style="min-height: 40vh; padding-top: 150px;">
+            <div class="hero-overlay"></div>
+            <div class="container text-center zoom-in" style="position: relative; z-index: 1;">
+                <h1 style="color: #fff; font-size: 3.5rem;">تواصل معنا</h1>
+                <p style="color: #fff; font-size: 1.5rem;">نسعد دائماً بخدمتكم</p>
+            </div>
+        </section>
+
+        <section class="social section">
+            <div class="container">
+                <div class="social-cards">
+                    <a href="https://wa.me/966545791974" target="_blank" class="social-card whatsapp slide-up shine-effect">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <h3>واتساب</h3>
+                        <p>تواصل سريع ومباشر</p>
+                    </a>
+                    <a href="https://www.facebook.com/fawaz2588" target="_blank" class="social-card facebook slide-up shine-effect" style="transition-delay: 0.1s;">
+                        <i class="fa-brands fa-facebook"></i>
+                        <h3>فيسبوك</h3>
+                        <p>تابع جديدنا</p>
+                    </a>
+                    <a href="https://www.instagram.com/elwakeel_group/" target="_blank" class="social-card instagram slide-up shine-effect" style="transition-delay: 0.2s;">
+                        <i class="fa-brands fa-instagram"></i>
+                        <h3>انستجرام</h3>
+                        <p>شاهد أحدث التجهيزات</p>
+                    </a>
+                    <a href="https://www.tiktok.com/@fawaz19961" target="_blank" class="social-card tiktok slide-up shine-effect" style="transition-delay: 0.3s;">
+                        <i class="fa-brands fa-tiktok"></i>
+                        <h3>تيك توك</h3>
+                        <p>فيديوهات سريعة للمعدات</p>
+                    </a>
+                    <a href="https://www.youtube.com/@elwakeel_equipment" target="_blank" class="social-card youtube slide-up shine-effect" style="transition-delay: 0.4s;">
+                        <i class="fa-brands fa-youtube"></i>
+                        <h3>يوتيوب</h3>
+                        <p>مراجعات تفصيلية بالفيديو</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="location section bg-light">
+            <div class="container">
+                <div class="location-wrapper slide-up">
+                    <div class="location-info">
+                        <div class="info-item">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div>
+                                <h3>مقر الشركة</h3>
+                                <p>طريق الملك فيصل، حائل</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="location-map">
+                        <iframe src="https://maps.google.com/maps?q=%D8%B7%D8%B1%D9%8A%D9%82%20%D8%A7%D9%84%D9%85%D9%84%D9%83%20%D9%81%D9%8A%D8%B5%D9%84%D8%8C%20%D8%AD%D8%A7%D8%A6%D9%84&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="400" style="border:0; border-radius: var(--radius-lg);" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <div class="footer-logo"><img src="logo.png" class="footer-logo-img"></div>
+            <p class="copyright">&copy; <span id="currentYear"></span> شركة الوكيل. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="شركة الوكيل لمعدات المخابز - استيراد وبيع أفضل معدات المخابز والحلويات الإيطالية">
+    <title>شركة الوكيل لمعدات المخابز | ELWAKEEL</title>
+    <!-- Google Fonts: Tajawal & Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Immediate Auth & Speed Check -->
+    <!-- Interactive Entrance Logic -->
+    <script>
+        function toggleLight() {
+            console.log("Lamp toggled");
+            const overlay = document.getElementById('interactive-welcome');
+            overlay.classList.add('light-on');
+            try { new Audio('https://www.soundjay.com/buttons/button-3.mp3').play().catch(() => {}); } catch(e) {}
+        }
+
+        function openDoor() {
+            console.log("Door clicked - Entering site");
+            const overlay = document.getElementById('interactive-welcome');
+            const welcomeMsg = document.getElementById('welcome-msg-interactive');
+            
+            if (welcomeMsg) welcomeMsg.classList.add('active');
+            try { new Audio('https://www.soundjay.com/buttons/button-10.mp3').play().catch(() => {}); } catch(e) {}
+
+            // Immediate interactivity restoration
+            overlay.style.pointerEvents = 'none';
+
+            // Fade out
+            setTimeout(() => {
+                overlay.style.setProperty('opacity', '0', 'important');
+                localStorage.setItem('siteEntered', 'true');
+                setTimeout(() => {
+                    overlay.style.setProperty('display', 'none', 'important');
+                    document.body.style.overflow = 'auto';
+                    overlay.style.zIndex = '-1';
+                }, 800);
+            }, 1500);
+        }
+
+        // Show skip button if stuck
+        setTimeout(() => {
+            const skipBtn = document.getElementById('skip-welcome');
+            if (skipBtn) skipBtn.style.opacity = '1';
+        }, 5000);
+    </script>
+    <style>
+        .interactive-overlay {
+            position: fixed !important; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%;
+            background: #050505 !important; z-index: 99999 !important;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            overflow: hidden; transition: opacity 0.8s ease;
+        }
+        .lamp-container { position: relative; display: flex; flex-direction: column; align-items: center; margin-bottom: 20px; z-index: 10; }
+        .lamp-img { width: 140px; border-radius: 15px; cursor: pointer; transition: transform 0.3s ease; box-shadow: 0 5px 15px rgba(212, 163, 115, 0.2); position: relative; z-index: 10; }
+        .lamp-img:hover { transform: scale(1.05); box-shadow: 0 5px 25px rgba(212, 163, 115, 0.4); }
+        .turn-on-text { color: #d4a373; font-weight: bold; margin-top: 15px; cursor: pointer; font-size: 1.2rem; z-index: 10; animation: pulse 2s infinite; position: relative; }
+        @keyframes pulse { 0% { opacity: 0.7; } 50% { opacity: 1; } 100% { opacity: 0.7; } }
+        .light-source { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 0; height: 0; background: radial-gradient(circle, rgba(212, 163, 115, 0.5) 0%, transparent 70%); border-radius: 50%; transition: all 0.5s; pointer-events: none; z-index: 5; }
+        .light-on .light-source { width: 1200px; height: 1200px; }
+        .hidden-door { width: 150px; height: 240px; background: #1a1a1a; border: 3px solid #333; border-radius: 10px 10px 0 0; cursor: pointer; opacity: 0; transform: scale(0.9); transition: all 0.5s; display: flex; align-items: center; justify-content: center; z-index: 5; margin-top: -20px; position: relative; }
+        .light-on .hidden-door { opacity: 1; transform: scale(1); }
+        .hidden-door::after { content: ''; position: absolute; right: 20px; width: 12px; height: 12px; background: #d4a373; border-radius: 50%; }
+        .welcome-msg { position: absolute; font-size: 2.5rem; color: #d4a373; font-weight: 900; opacity: 0; transition: all 0.5s; text-align: center; z-index: 20; direction: rtl; pointer-events: none; }
+        .welcome-msg.active { opacity: 1; transform: translateY(-80px); }
+        .skip-btn { position: absolute; bottom: 40px; color: #555; cursor: pointer; opacity: 0; transition: opacity 1s; font-size: 1rem; text-decoration: underline; z-index: 100; }
+
+        /* Mobile Responsiveness for Interactive Screen */
+        @media (max-width: 768px) {
+            .lamp-img { width: 100px; }
+            .hidden-door { width: 120px; height: 180px; margin-top: -10px; }
+            .welcome-msg { font-size: 1.5rem; width: 90%; }
+            .welcome-msg.active { transform: translateY(-50px); }
+            .skip-btn { bottom: 20px; font-size: 0.85rem; }
+            .turn-on-text { font-size: 1rem; margin-top: 10px; }
+            .lamp-container { margin-bottom: 10px; }
+        }
+    </style>
+</head>
+<body style="overflow: hidden;">
+    <!-- Interactive Welcome Sequence -->
+    <div id="interactive-welcome" class="interactive-overlay">
+        <div class="lamp-container">
+            <img src="الاباجورة/الاباجورة.jpeg" class="lamp-img" onclick="toggleLight()" alt="أباجورة">
+            <div class="turn-on-text" onclick="toggleLight()">إفتح الضوء</div>
+            <div class="light-source"></div>
+        </div>
+
+        <div class="hidden-door" onclick="openDoor()">
+            <span style="color: #d4a373; font-weight: bold; font-size: 1.2rem;">ادخل</span>
+        </div>
+
+        <div id="welcome-msg-interactive" class="welcome-msg">
+            مرحباً بك في عالمنا<br>
+            <span style="font-size: 1.5rem; opacity: 0.8;">شركة الوكيل ترحب بكم</span>
+        </div>
+
+        <div id="skip-welcome" class="skip-btn" onclick="openDoor()">تخطي والدخول للموقع مباشرة</div>
+    </div>
+
+    <!-- Page Loader -->
+    <div class="page-loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>سلة الاستفسارات</h3>
+            <i class="fa-solid fa-xmark close-cart" onclick="toggleCart()"></i>
+        </div>
+        <div class="cart-items">
+            <!-- Items will be injected here -->
+        </div>
+        <div class="cart-footer">
+            <button class="btn btn-whatsapp btn-block" onclick="window.open('https://wa.me/966545791974', '_blank')">
+                <i class="fa-brands fa-whatsapp"></i> اطلب المنتجات في السلة
+            </button>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <i class="fa-solid fa-xmark close-lightbox" onclick="closeLightbox()"></i>
+        <div class="lightbox-content">
+            <img src="" class="lightbox-img">
+            <div class="lightbox-details">
+                <h3 class="lightbox-title"></h3>
+                <div class="lightbox-actions">
+                    <!-- Actions will be injected here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme & Device Controls (Moved to Header for cleaner look) -->
+    
+
+    <!-- Navbar -->
+    <header class="header">
+        <nav class="navbar container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="شركة الوكيل لمعدات المخابز" class="logo-img">
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">الرئيسية</a></li>
+                <li><a href="about.html">من نحن</a></li>
+                <li><a href="equipment.html">المعدات</a></li>
+                <li><a href="offers.html">العروض</a></li>
+                <li><a href="contact.html">تواصل معنا</a></li>
+            </ul>
+
+            <div class="header-actions">
+                <div class="cart-icon" onclick="toggleCart()">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-badge">0</span>
+                </div>
+                <button id="theme-toggle" class="control-btn" title="تغيير المظهر">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <div class="mobile-toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero section">
+            <div class="hero-overlay"></div>
+            <div class="container hero-content">
+                <div class="hero-text fade-right">
+                    <h1>شركة الوكيل لمعدات المخابز</h1>
+                    <p class="subtitle">الجودة الإيطالية بين يديك</p>
+                    <p class="description">
+                        نحن متخصصون في توفير أفضل وأحدث معدات المخابز والحلويات المستوردة من إيطاليا. 
+                        نقدم حلولاً متكاملة لتجهيز مخبزك بأعلى معايير الجودة العالمية لضمان نجاح مشروعك.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="videos.html" class="btn btn-primary">
+                            <i class="fa-solid fa-play"></i> فيديوهاتنا
+                        </a>
+                        <a href="tel:966545791974" class="btn btn-secondary">
+                            <i class="fa-solid fa-phone"></i> اتصل بنا
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper zoom-in">
+                    <div class="owner-card float">
+                        <img src="صورة شخصية/اهي.jpeg" alt="صاحب الشركة" class="owner-image">
+                        <div class="owner-info">
+                            <h3>مؤسس الشركة</h3>
+                            <p>خبرة تتجاوز 15 عاماً في التجهيز</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features (Quick About) -->
+        <section class="section">
+            <div class="container">
+                <div class="about-wrapper">
+                    <div class="about-text fade-right">
+                        <h2 style="color: var(--primary-color);">لماذا تختار الوكيل؟</h2>
+                        <p>نحن لا نقدم فقط معدات، بل نقدم خبرة تمتد لأكثر من 15 عاماً في سوق تجهيز المخابز والحلويات في المملكة.</p>
+                        <p>جميع منتجاتنا مختارة بعناية من أفضل المصانع الإيطالية لضمان المتانة والكفاءة الإنتاجية العالية.</p>
+                        <a href="about.html" class="btn btn-primary" style="margin-top: 20px;">اقرأ المزيد عنا</a>
+                    </div>
+                    <div class="hero-image-wrapper fade-left">
+                         <img src="من نحن/WhatsApp Image 2026-05-14 at 1.52.26 AM.jpeg" alt="من نحن" style="border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);" class="shine-effect">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Equipment Preview -->
+        <section class="equipment section bg-light">
+            <div class="container">
+                <div class="section-title text-center fade-in">
+                    <h2>أحدث المعدات</h2>
+                    <p>لمحة سريعة على بعض من أفضل منتجاتنا</p>
+                </div>
+                
+                <div class="products-grid" id="products-container">
+                    <!-- Limited products will be injected via JS -->
+                </div>
+
+                <div class="text-center" style="margin-top: 50px;">
+                    <a href="equipment.html" class="btn btn-secondary">عرض كافة المعدات <i class="fa-solid fa-arrow-left"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Offers Preview -->
+        <section class="offers section">
+            <div class="container">
+                <div class="section-title text-center fade-in">
+                    <h2>عروض حصرية</h2>
+                    <p>وفر 15% على أفضل المعدات الإيطالية</p>
+                </div>
+                
+                <div class="offers-grid" id="offers-container">
+                    <!-- Limited offers will be injected -->
+                </div>
+
+                <div class="text-center" style="margin-top: 50px;">
+                    <a href="offers.html" class="btn btn-primary">مشاهدة جميع العروض <i class="fa-solid fa-tags"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Media Restoration -->
+        <section class="social section bg-light">
+            <div class="container">
+                <div class="section-title text-center fade-in">
+                    <h2>تواصل معنا</h2>
+                    <p>تابعنا على منصات التواصل الاجتماعي</p>
+                </div>
+                <div class="social-cards">
+                    <a href="https://www.facebook.com/fawaz2588" target="_blank" class="social-card facebook slide-up shine-effect">
+                        <i class="fa-brands fa-facebook"></i>
+                        <h3>فيسبوك</h3>
+                    </a>
+                    <a href="https://wa.me/966545791974" target="_blank" class="social-card whatsapp slide-up shine-effect" style="transition-delay: 0.1s">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <h3>واتساب</h3>
+                    </a>
+                    <a href="https://www.instagram.com/elwakeel_group/" target="_blank" class="social-card instagram slide-up shine-effect" style="transition-delay: 0.2s">
+                        <i class="fa-brands fa-instagram"></i>
+                        <h3>انستجرام</h3>
+                    </a>
+                    <a href="https://www.tiktok.com/@fawaz19961" target="_blank" class="social-card tiktok slide-up shine-effect" style="transition-delay: 0.3s">
+                        <i class="fa-brands fa-tiktok"></i>
+                        <h3>تيك توك</h3>
+                    </a>
+                    <a href="https://www.youtube.com/@elwakeel_equipment" target="_blank" class="social-card youtube slide-up shine-effect" style="transition-delay: 0.4s">
+                        <i class="fa-brands fa-youtube"></i>
+                        <h3>يوتيوب</h3>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <div class="footer-logo">
+                <img src="logo.png" alt="شركة الوكيل لمعدات المخابز" class="footer-logo-img">
+            </div>
+            <p class="copyright">
+                &copy; <span id="currentYear"></span> شركة الوكيل لمعدات المخابز. جميع الحقوق محفوظة.
+            </p>
+            <div class="footer-links" style="margin-top: 20px;">
+                <a href="about.html" style="margin: 0 10px;">من نحن</a> | 
+                <a href="equipment.html" style="margin: 0 10px;">المعدات</a> | 
+                <a href="offers.html" style="margin: 0 10px;">العروض</a> | 
+                <a href="contact.html" style="margin: 0 10px;">تواصل معنا</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
